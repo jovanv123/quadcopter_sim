@@ -86,12 +86,10 @@ geometry_msgs::msg::Twist MissionNode::step_land()
 
 std::array<double, 3> MissionNode::world_to_body(const std::array<double, 3> & v_world, double yaw)
 {
-  /* TODO:
-   * Rotate the world-frame vector into the vehicle body frame using the supplied yaw angle.
-   */
-  static_cast<void>(v_world);
-  static_cast<void>(yaw);
-  return {};
+  double robot_yaw = get_yaw(get_pose().orientation);
+  std::array<double , 3> v_robot = 
+  //TODO
+
 }
 
 double MissionNode::get_yaw(const geometry_msgs::msg::Quaternion & q)
