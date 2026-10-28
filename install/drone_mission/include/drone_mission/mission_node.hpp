@@ -55,9 +55,11 @@ private:
   geometry_msgs::msg::Twist step_takeoff();
   geometry_msgs::msg::Twist step_waypoints();
   geometry_msgs::msg::Twist step_land();
-  std::array<double, 3> world_to_body(const std::array<double, 3> & v_world, double yaw);
-  double get_yaw(const geometry_msgs::msg::Quaternion & q);
-  double clamp_velocity(double v, double limit);
+  std::array<double, 3> PID_controller(const std::array<double, 3> & target_pose_, const std::array<double, 3> & current_pose_) const;
+
+  static std::array<double, 3> world_to_body(const std::array<double, 3> & v_world, double yaw);
+  static double get_yaw(const geometry_msgs::msg::Quaternion & q);
+  static double clamp_velocity(double v, double limit);
   bool reached(const std::array<double, 3> & target) const;
   const geometry_msgs::msg::Pose & get_pose() const; 
 

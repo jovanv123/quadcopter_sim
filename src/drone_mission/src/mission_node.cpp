@@ -47,7 +47,6 @@ MissionNode::MissionNode(const rclcpp::NodeOptions & options)
     std::chrono::duration_cast<std::chrono::nanoseconds>(timer_period),
     [this]() {control_loop();});
 
-  // Publish a standard ROS Bool once to arm the bridged Gazebo controller.
 }
 
 void MissionNode::control_loop()
@@ -59,8 +58,9 @@ void MissionNode::control_loop()
   switch(state_){
     case State::Idle: if(has_odometry_){starting_pose_ = get_pose(); state_ = State::Takeoff;} break;
     case State::Takeoff: twist_publisher_->publish(step_takeoff()); break;
-    case State::Waypoints: break;
-    case State::Done: break;
+    case State::Waypoints: twist_publisher_->publish(step_waypoints()); break;
+    case State::Land: starting_pose_ = get_pose(); twist_publisher_->publish(step_land()); break;
+    case State::Done: twist_publisher_->publish(geometry_msgs::msg::Twist {}); break;
 
   }
 }
@@ -70,39 +70,60 @@ geometry_msgs::msg::Twist MissionNode::step_takeoff()
   const auto & current_pose_msg_ = get_pose();
   const std::array<double, 3> current_pose_ {current_pose_msg_.position.x, current_pose_msg_.position.y, current_pose_msg_.position.z};
   const std::array<double, 3> target_pose_ {starting_pose_.position.x, starting_pose_.position.y, takeoff_altitude_};
-  std::array<double, 3> target_speed_body_ {};
   
-  target_speed_body_[0] = kp_xy_*(target_pose_[0] - current_pose_[0]);
-  target_speed_body_[1] = kp_xy_*(target_pose_[1] - current_pose_[1]);
-  target_speed_body_[2] = kp_z_*(target_pose_[2] - current_pose_[2]);
-
-  target_speed_body_[0] = clamp_velocity(target_speed_body_[0], max_vel_xy_);
-  target_speed_body_[1] = clamp_velocity(target_speed_body_[1], max_vel_xy_);
-  target_speed_body_[2] = clamp_velocity(target_speed_body_[2], max_vel_z_);
-
-  const std::array<double, 3> target_speed_ = world_to_body(target_speed_body_, get_yaw(get_pose().orientation));
+  const auto target_speed_ = PID_controller(target_pose_, current_pose_);
 
   geometry_msgs::msg::Twist speed_msg_;
   speed_msg_.linear.x = target_speed_[0];
   speed_msg_.linear.y = target_speed_[1];
   speed_msg_.linear.z = target_speed_[2];
+  if (reached(target_pose_)){state_ = State::Waypoints;}
+
   return speed_msg_;
 }
 
 geometry_msgs::msg::Twist MissionNode::step_waypoints()
 {
-  /* TODO:
-   * Track the current waypoint, advance the waypoint index, and transition when the route is complete.
-   */
-  return geometry_msgs::msg::Twist{};
+  const auto & current_pose_msg_ = get_pose();
+  const std::array<double, 3> current_pose_ {current_pose_msg_.position.x, current_pose_msg_.position.y, current_pose_msg_.position.z};
+  const std::array<double, 3> target_pose_ {waypoints_[current_waypoint_index_][0], waypoints_[current_waypoint_index_][1], waypoints_[current_waypoint_index_][2]};
+
+  const auto target_speed_ = PID_controller(target_pose_, current_pose_);
+  
+  geometry_msgs::msg::Twist speed_msg_;
+  speed_msg_.linear.x = target_speed_[0];
+  speed_msg_.linear.y = target_speed_[1];
+  speed_msg_.linear.z = target_speed_[2];
+
+  if (reached(target_pose_)){
+    current_waypoint_index_++;
+    if (current_waypoint_index_ >= waypoints_.size())
+    {
+      current_waypoint_index_ = 0;
+      state_ = State::Land;
+      return geometry_msgs::msg::Twist{};
+    }
+  }
+
+  return speed_msg_;
 }
 
 geometry_msgs::msg::Twist MissionNode::step_land()
 {
-  /* TODO:
-   * Generate the landing command and transition to Done once the landing target is reached.
-   */
-  return geometry_msgs::msg::Twist{};
+ 
+  const auto & current_pose_msg_ = get_pose();
+  const std::array<double, 3> current_pose_ {current_pose_msg_.position.x, current_pose_msg_.position.y, current_pose_msg_.position.z};
+  const std::array<double, 3> target_pose_ {starting_pose_.position.x, starting_pose_.position.y, 0.0};
+  
+  const auto target_speed_ = PID_controller(target_pose_, current_pose_);
+
+  geometry_msgs::msg::Twist speed_msg_;
+  speed_msg_.linear.x = target_speed_[0];
+  speed_msg_.linear.y = target_speed_[1];
+  speed_msg_.linear.z = target_speed_[2];
+  if (reached(target_pose_)){state_ = State::Done;}
+
+  return speed_msg_;
 }
 
 std::array<double, 3> MissionNode::world_to_body(const std::array<double, 3> & v_world, double yaw)
@@ -136,6 +157,24 @@ bool MissionNode::reached(const std::array<double, 3> & target) const
     if (current_path <= position_tolerance_){return true;}
     else {return false;}
 
+}
+
+std::array<double, 3> MissionNode::PID_controller(const std::array<double, 3> & target_pose_, const std::array<double, 3> & current_pose_) const
+{
+
+  std::array<double, 3> target_speed_body_ {};
+  
+  target_speed_body_[0] = kp_xy_*(target_pose_[0] - current_pose_[0]);
+  target_speed_body_[1] = kp_xy_*(target_pose_[1] - current_pose_[1]);
+  target_speed_body_[2] = kp_z_*(target_pose_[2] - current_pose_[2]);
+
+  target_speed_body_[0] = clamp_velocity(target_speed_body_[0], max_vel_xy_);
+  target_speed_body_[1] = clamp_velocity(target_speed_body_[1], max_vel_xy_);
+  target_speed_body_[2] = clamp_velocity(target_speed_body_[2], max_vel_z_);
+
+  const std::array<double, 3> target_speed_ = world_to_body(target_speed_body_, get_yaw(get_pose().orientation));
+  
+  return target_speed_; 
 }
 
 const geometry_msgs::msg::Pose & MissionNode::get_pose() const {return latest_odometry_.pose.pose;} 
