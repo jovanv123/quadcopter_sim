@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <cmath>
 
+#include <Eigen/Geometry>
+
 #include <tf2/LinearMath/Matrix3x3.h>
 #include <tf2/LinearMath/Quaternion.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
@@ -13,6 +15,7 @@
 #include "geometry_msgs/msg/quaternion.hpp"
 #include "geometry_msgs/msg/twist.hpp"
 #include "nav_msgs/msg/odometry.hpp"
+#include "geometry_msgs/msg/pose.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/bool.hpp"
 
@@ -37,6 +40,7 @@ private:
   State state_{State::Idle};
   std::size_t current_waypoint_index_{0};
   std::vector<std::array<double, 3>> waypoints_;
+  geometry_msgs::msg::Pose starting_pose_;
 
   double takeoff_altitude_{2.0};
   double kp_xy_{1.0};

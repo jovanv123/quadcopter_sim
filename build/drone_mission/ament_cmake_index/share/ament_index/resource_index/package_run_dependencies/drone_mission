@@ -1,1 +1,1 @@
-rclcpp;geometry_msgs;nav_msgs;std_msgs;tf2;tf2_geometry_msgs;ros_gz_sim;ros_gz_bridge
+eigen;rclcpp;geometry_msgs;nav_msgs;std_msgs;tf2;tf2_geometry_msgs;ros_gz_sim;ros_gz_bridge

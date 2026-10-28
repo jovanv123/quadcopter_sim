@@ -48,24 +48,45 @@ MissionNode::MissionNode(const rclcpp::NodeOptions & options)
     [this]() {control_loop();});
 
   // Publish a standard ROS Bool once to arm the bridged Gazebo controller.
-  std_msgs::msg::Bool enable_message;
-  enable_message.data = true;
-  enable_publisher_->publish(enable_message);
 }
 
 void MissionNode::control_loop()
 {
-  /* TODO:
-   * Run the state machine, call the appropriate step function, and publish its command.
-   */
+  if (state_ != State::Done) {
+    enable_publisher_->publish(std_msgs::msg::Bool().set__data(true));
+  }
+
+  switch(state_){
+    case State::Idle: if(has_odometry_){starting_pose_ = get_pose(); state_ = State::Takeoff;} break;
+    case State::Takeoff: twist_publisher_->publish(step_takeoff()); break;
+    case State::Waypoints: break;
+    case State::Done: break;
+
+  }
 }
 
 geometry_msgs::msg::Twist MissionNode::step_takeoff()
 {
-  /* TODO:
-   * Compute the takeoff command and transition to Waypoints when the takeoff target is reached.
-   */
-  return geometry_msgs::msg::Twist{};
+  const auto & current_pose_msg_ = get_pose();
+  const std::array<double, 3> current_pose_ {current_pose_msg_.position.x, current_pose_msg_.position.y, current_pose_msg_.position.z};
+  const std::array<double, 3> target_pose_ {starting_pose_.position.x, starting_pose_.position.y, takeoff_altitude_};
+  std::array<double, 3> target_speed_body_ {};
+  
+  target_speed_body_[0] = kp_xy_*(target_pose_[0] - current_pose_[0]);
+  target_speed_body_[1] = kp_xy_*(target_pose_[1] - current_pose_[1]);
+  target_speed_body_[2] = kp_z_*(target_pose_[2] - current_pose_[2]);
+
+  target_speed_body_[0] = clamp_velocity(target_speed_body_[0], max_vel_xy_);
+  target_speed_body_[1] = clamp_velocity(target_speed_body_[1], max_vel_xy_);
+  target_speed_body_[2] = clamp_velocity(target_speed_body_[2], max_vel_z_);
+
+  const std::array<double, 3> target_speed_ = world_to_body(target_speed_body_, get_yaw(get_pose().orientation));
+
+  geometry_msgs::msg::Twist speed_msg_;
+  speed_msg_.linear.x = target_speed_[0];
+  speed_msg_.linear.y = target_speed_[1];
+  speed_msg_.linear.z = target_speed_[2];
+  return speed_msg_;
 }
 
 geometry_msgs::msg::Twist MissionNode::step_waypoints()
@@ -86,10 +107,11 @@ geometry_msgs::msg::Twist MissionNode::step_land()
 
 std::array<double, 3> MissionNode::world_to_body(const std::array<double, 3> & v_world, double yaw)
 {
-  double robot_yaw = get_yaw(get_pose().orientation);
-  std::array<double , 3> v_robot = 
-  //TODO
-
+  const Eigen::Map<const Eigen::Vector3d> v(v_world.data());
+  const Eigen::Matrix3d R = Eigen::AngleAxisd(yaw, Eigen::Vector3d::UnitZ()).toRotationMatrix();
+  const Eigen::Vector3d v_body = R.transpose() * v;
+  
+  return {v_body.x(), v_body.y(), v_body.z()};
 }
 
 double MissionNode::get_yaw(const geometry_msgs::msg::Quaternion & q)

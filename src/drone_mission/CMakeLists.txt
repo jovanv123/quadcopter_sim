@@ -16,11 +16,13 @@ find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(ros_gz_sim REQUIRED)
 find_package(ros_gz_bridge REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 add_executable(mission_node
   src/main.cpp
   src/mission_node.cpp
 )
+target_link_libraries(mission_node Eigen3::Eigen) 
 target_include_directories(mission_node PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
