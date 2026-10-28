@@ -1,0 +1,31 @@
+[ 33%] [32mBuilding CXX object CMakeFiles/mission_node.dir/src/mission_node.cpp.o[0m
+[ 66%] [32m[1mLinking CXX executable mission_node[0m
+[100%] Built target mission_node
+-- Install configuration: ""
+-- Installing: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/lib/drone_mission/mission_node
+-- Set non-toolchain portion of runtime path of "/home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/lib/drone_mission/mission_node" to ""
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/include
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/include/drone_mission
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/include/drone_mission/mission_node.hpp
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/launch
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/launch/sim.launch.py
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/config
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/config/mission.yaml
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/config/bridge.yaml
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/worlds
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/worlds/multicopter_velocity_control.sdf
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/ament_index/resource_index/package_run_dependencies/drone_mission
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/ament_index/resource_index/parent_prefix_path/drone_mission
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/environment/ament_prefix_path.sh
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/environment/path.sh
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/environment/path.dsv
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/local_setup.bash
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/local_setup.sh
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/local_setup.zsh
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/local_setup.dsv
+-- Installing: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/package.dsv
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/ament_index/resource_index/packages/drone_mission
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/cmake/drone_missionConfig.cmake
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/cmake/drone_missionConfig-version.cmake
+-- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/package.xml

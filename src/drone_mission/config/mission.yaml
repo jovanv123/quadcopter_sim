@@ -1,0 +1,12 @@
+mission_node:
+  ros__parameters:
+    takeoff_altitude: 2.0
+    # Flat sequence of x, y, z triples; replace with your mission coordinates.
+    waypoints: [0.0, 0.0, 2.0, 2.0, 0.0, 2.0, 2.0, 2.0, 2.0]
+    kp_xy: 1.0
+    kp_z: 1.0
+    kp_yaw: 1.0
+    max_vel_xy: 1.0
+    max_vel_z: 0.5
+    position_tolerance: 0.2
+    control_rate_hz: 20.0

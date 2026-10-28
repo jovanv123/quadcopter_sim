@@ -1,0 +1,35 @@
+[0.013s] Invoking command in '/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission -- -j16 -l16
+[0.072s] [ 33%] [32mBuilding CXX object CMakeFiles/mission_node.dir/src/mission_node.cpp.o[0m
+[6.219s] [ 66%] [32m[1mLinking CXX executable mission_node[0m
+[6.456s] [100%] Built target mission_node
+[6.464s] Invoked command in '/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission -- -j16 -l16
+[6.473s] Invoking command in '/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission
+[6.479s] -- Install configuration: ""
+[6.479s] -- Installing: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/lib/drone_mission/mission_node
+[6.482s] -- Set non-toolchain portion of runtime path of "/home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/lib/drone_mission/mission_node" to ""
+[6.482s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/include
+[6.482s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/include/drone_mission
+[6.482s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/include/drone_mission/mission_node.hpp
+[6.482s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/launch
+[6.482s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/launch/sim.launch.py
+[6.482s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/config
+[6.482s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/config/mission.yaml
+[6.483s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/config/bridge.yaml
+[6.483s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/worlds
+[6.484s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/worlds/multicopter_velocity_control.sdf
+[6.484s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/ament_index/resource_index/package_run_dependencies/drone_mission
+[6.485s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/ament_index/resource_index/parent_prefix_path/drone_mission
+[6.485s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/environment/ament_prefix_path.sh
+[6.485s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/environment/ament_prefix_path.dsv
+[6.485s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/environment/path.sh
+[6.486s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/environment/path.dsv
+[6.486s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/local_setup.bash
+[6.486s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/local_setup.sh
+[6.486s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/local_setup.zsh
+[6.486s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/local_setup.dsv
+[6.487s] -- Installing: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/package.dsv
+[6.487s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/ament_index/resource_index/packages/drone_mission
+[6.487s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/cmake/drone_missionConfig.cmake
+[6.487s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/cmake/drone_missionConfig-version.cmake
+[6.487s] -- Up-to-date: /home/sicvarius/Documents/gazebo_quadcopter/install/drone_mission/share/drone_mission/package.xml
+[6.488s] Invoked command in '/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission

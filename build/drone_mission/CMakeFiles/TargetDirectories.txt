@@ -1,0 +1,10 @@
+/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission/CMakeFiles/uninstall.dir
+/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission/CMakeFiles/drone_mission_uninstall.dir
+/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission/CMakeFiles/mission_node.dir
+/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission/CMakeFiles/test.dir
+/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission/CMakeFiles/edit_cache.dir
+/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission/CMakeFiles/rebuild_cache.dir
+/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission/CMakeFiles/list_install_components.dir
+/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission/CMakeFiles/install.dir
+/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission/CMakeFiles/install/local.dir
+/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission/CMakeFiles/install/strip.dir
