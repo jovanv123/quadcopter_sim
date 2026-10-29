@@ -5,8 +5,17 @@ from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
+import os
+from ament_index_python.packages import get_package_share_directory
+from launch.actions import AppendEnvironmentVariable
 
 def generate_launch_description():
+
+
+    pkg_share = get_package_share_directory('drone_mission')
+    set_model_path = AppendEnvironmentVariable(
+        'GZ_SIM_RESOURCE_PATH', os.path.join(pkg_share, 'models'))
+
     package_share = FindPackageShare("drone_mission")
     world_file = PathJoinSubstitution(
         [package_share, "worlds", "multicopter_velocity_control.sdf"]
@@ -40,7 +49,15 @@ def generate_launch_description():
         executable="mission_node",
         name="mission_node",
         output="screen",
-        parameters=[mission_config],
+        parameters=[mission_config, {"use_sim_time": True}],
     )
 
-    return LaunchDescription([gazebo, bridge, mission])
+    perception = Node(
+        package = "drone_perception",
+        executable ="perception_node",
+        name="perception_node",
+        output="screen",
+        parameters=[{"use_sim_time": True}],
+    )
+
+        return LaunchDescription([set_model_path, gazebo, bridge, mission, perception])

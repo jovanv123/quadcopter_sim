@@ -41,7 +41,7 @@ install(TARGETS mission_node
 install(DIRECTORY include/
   DESTINATION include
 )
-install(DIRECTORY launch config worlds
+install(DIRECTORY launch config worlds models
   DESTINATION share/${PROJECT_NAME}
 )
 
