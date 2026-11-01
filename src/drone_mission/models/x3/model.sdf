@@ -347,6 +347,7 @@
             </sensor>
 
             <sensor name="seg_camera" type="segmentation">
+                <gz_frame_id>camera_color_optical_frame</gz_frame_id>
                 <always_on>true</always_on>
                 <update_rate>30</update_rate>
                 <topic>segmentation</topic>

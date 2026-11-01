@@ -14,7 +14,6 @@ TrackerNode::TrackerNode(const rclcpp::NodeOptions & options)
         [this](const geometry_msgs::msg::PointStamped::SharedPtr message){
             if(!has_point_)
             {
-                has_point_ = true;
                 process_input_point(*message);
             }
         }
@@ -54,6 +53,7 @@ void TrackerNode::process_input_point(const geometry_msgs::msg::PointStamped & m
     try {
         const auto p_world = tf_buffer_->transform(p_cam, world_frame_, tf2::durationFromSec(0.1));
         world_pub_->publish(p_world);
+        has_point_ = true;
     } catch (const tf2::TransformException & e) {
         RCLCPP_WARN_THROTTLE(get_logger(), *get_clock(), 1000, "TF failed: %s", e.what());
     }

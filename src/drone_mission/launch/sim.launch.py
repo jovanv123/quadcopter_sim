@@ -67,5 +67,21 @@ def generate_launch_description():
         output="screen",
         parameters=[{"use_sim_time": True}],
     )
-  
-    return LaunchDescription([set_model_path, gazebo, bridge, mission, perception, tracker])
+
+    base_to_camera = Node(
+        package='tf2_ros', executable='static_transform_publisher',
+        arguments=['--x', '0.1', '--y', '0', '--z', '-0.04',
+                '--roll', '0', '--pitch', '1.5708', '--yaw', '0',
+                '--frame-id', 'x3/base_footprint', '--child-frame-id', 'camera_link'],
+        parameters=[{'use_sim_time': True}],
+    )
+
+    camera_to_optical = Node(
+        package='tf2_ros', executable='static_transform_publisher',
+        arguments=['--roll', '-1.5708', '--pitch', '0', '--yaw', '-1.5708',
+                '--frame-id', 'camera_link', '--child-frame-id', 'camera_color_optical_frame'],
+        parameters=[{'use_sim_time': True}],
+    )
+
+    return LaunchDescription([set_model_path, gazebo, bridge, base_to_camera, camera_to_optical,
+                          mission, perception, tracker])

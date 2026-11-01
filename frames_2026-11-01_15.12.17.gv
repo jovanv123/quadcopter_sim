@@ -1,0 +1,9 @@
+digraph G {
+"x3/odom" -> "x3/base_footprint"[label=" Broadcaster: default_authority\nAverage rate: 50.2\nBuffer length: 5.0\nMost recent transform: 5.68\nOldest transform: 0.68\n"];
+"camera_link" -> "camera_color_optical_frame"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"X3_BASE_FRAME" -> "camera_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1793542337.0806365"[ shape=plaintext ] ;
+}->"X3_BASE_FRAME";
+}
