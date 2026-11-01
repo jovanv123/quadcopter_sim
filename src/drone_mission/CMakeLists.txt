@@ -12,17 +12,19 @@ find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(ros_gz_sim REQUIRED)
 find_package(ros_gz_bridge REQUIRED)
 find_package(Eigen3 REQUIRED)
 
+# ---------------- mission_node ----------------
 add_executable(mission_node
   src/main.cpp
   src/mission_node.cpp
 )
-target_link_libraries(mission_node Eigen3::Eigen) 
 target_include_directories(mission_node PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
@@ -34,8 +36,27 @@ ament_target_dependencies(mission_node
   tf2
   tf2_geometry_msgs
 )
+target_link_libraries(mission_node Eigen3::Eigen)
 
-install(TARGETS mission_node
+# ---------------- tracker_node ----------------
+add_executable(tracker_node
+  src/tracker_main.cpp
+  src/tracker_node.cpp
+)
+target_include_directories(tracker_node PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+ament_target_dependencies(tracker_node
+  rclcpp
+  geometry_msgs
+  sensor_msgs
+  tf2
+  tf2_ros
+  tf2_geometry_msgs
+)
+target_link_libraries(tracker_node Eigen3::Eigen)
+
+install(TARGETS mission_node tracker_node
   DESTINATION lib/${PROJECT_NAME}
 )
 install(DIRECTORY include/

@@ -60,4 +60,12 @@ def generate_launch_description():
         parameters=[{"use_sim_time": True}],
     )
 
-        return LaunchDescription([set_model_path, gazebo, bridge, mission, perception])
+    tracker = Node(
+        package="drone_mission",
+        executable="tracker_node",
+        name="tracker_node",
+        output="screen",
+        parameters=[{"use_sim_time": True}],
+    )
+  
+    return LaunchDescription([set_model_path, gazebo, bridge, mission, perception, tracker])

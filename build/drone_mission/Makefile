@@ -210,6 +210,19 @@ mission_node/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mission_node.dir/build.make CMakeFiles/mission_node.dir/build
 .PHONY : mission_node/fast
 
+#=============================================================================
+# Target rules for targets named tracker_node
+
+# Build rule for target.
+tracker_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tracker_node
+.PHONY : tracker_node
+
+# fast build rule for target.
+tracker_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tracker_node.dir/build.make CMakeFiles/tracker_node.dir/build
+.PHONY : tracker_node/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -258,6 +271,54 @@ src/mission_node.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mission_node.dir/build.make CMakeFiles/mission_node.dir/src/mission_node.cpp.s
 .PHONY : src/mission_node.cpp.s
 
+src/tracker_main.o: src/tracker_main.cpp.o
+.PHONY : src/tracker_main.o
+
+# target to build an object file
+src/tracker_main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tracker_node.dir/build.make CMakeFiles/tracker_node.dir/src/tracker_main.cpp.o
+.PHONY : src/tracker_main.cpp.o
+
+src/tracker_main.i: src/tracker_main.cpp.i
+.PHONY : src/tracker_main.i
+
+# target to preprocess a source file
+src/tracker_main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tracker_node.dir/build.make CMakeFiles/tracker_node.dir/src/tracker_main.cpp.i
+.PHONY : src/tracker_main.cpp.i
+
+src/tracker_main.s: src/tracker_main.cpp.s
+.PHONY : src/tracker_main.s
+
+# target to generate assembly for a file
+src/tracker_main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tracker_node.dir/build.make CMakeFiles/tracker_node.dir/src/tracker_main.cpp.s
+.PHONY : src/tracker_main.cpp.s
+
+src/tracker_node.o: src/tracker_node.cpp.o
+.PHONY : src/tracker_node.o
+
+# target to build an object file
+src/tracker_node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tracker_node.dir/build.make CMakeFiles/tracker_node.dir/src/tracker_node.cpp.o
+.PHONY : src/tracker_node.cpp.o
+
+src/tracker_node.i: src/tracker_node.cpp.i
+.PHONY : src/tracker_node.i
+
+# target to preprocess a source file
+src/tracker_node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tracker_node.dir/build.make CMakeFiles/tracker_node.dir/src/tracker_node.cpp.i
+.PHONY : src/tracker_node.cpp.i
+
+src/tracker_node.s: src/tracker_node.cpp.s
+.PHONY : src/tracker_node.s
+
+# target to generate assembly for a file
+src/tracker_node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tracker_node.dir/build.make CMakeFiles/tracker_node.dir/src/tracker_node.cpp.s
+.PHONY : src/tracker_node.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -274,12 +335,19 @@ help:
 	@echo "... drone_mission_uninstall"
 	@echo "... uninstall"
 	@echo "... mission_node"
+	@echo "... tracker_node"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
 	@echo "... src/mission_node.o"
 	@echo "... src/mission_node.i"
 	@echo "... src/mission_node.s"
+	@echo "... src/tracker_main.o"
+	@echo "... src/tracker_main.i"
+	@echo "... src/tracker_main.s"
+	@echo "... src/tracker_node.o"
+	@echo "... src/tracker_node.i"
+	@echo "... src/tracker_node.s"
 .PHONY : help
 
 

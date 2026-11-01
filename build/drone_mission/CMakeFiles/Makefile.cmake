@@ -1177,4 +1177,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/uninstall.dir/DependInfo.cmake"
   "CMakeFiles/drone_mission_uninstall.dir/DependInfo.cmake"
   "CMakeFiles/mission_node.dir/DependInfo.cmake"
+  "CMakeFiles/tracker_node.dir/DependInfo.cmake"
   )

@@ -16,6 +16,7 @@
 #include "geometry_msgs/msg/twist.hpp"
 #include "nav_msgs/msg/odometry.hpp"
 #include "geometry_msgs/msg/pose.hpp"
+#include "geometry_msgs/msg/point_stamped.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/bool.hpp"
 
@@ -26,21 +27,30 @@ public:
   explicit MissionNode(const rclcpp::NodeOptions & options = rclcpp::NodeOptions());
 
 private:
-  enum class State { Idle, Takeoff, Waypoints, Land, Done };
+  enum class State { Idle, Takeoff, Waypoints, Pickup, Land, Done };
 
   // ROS entities: subscribers receive state, publishers send commands, and the wall timer schedules control.
   rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odometry_subscriber_;
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr twist_publisher_;
   rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr enable_publisher_;
   rclcpp::TimerBase::SharedPtr control_timer_;
-
+  rclcpp::Subscription<geometry_msgs::msg::PointStamped>::SharedPtr detections_subscriber_;
+  
+  geometry_msgs::msg::Pose starting_pose_;
+  geometry_msgs::msg::PointStamped latest_point_{};
   nav_msgs::msg::Odometry latest_odometry_;
 
   bool has_odometry_{false};
+  bool has_point_{false};
   State state_{State::Idle};
-  std::size_t current_waypoint_index_{0};
-  std::vector<std::array<double, 3>> waypoints_;
-  geometry_msgs::msg::Pose starting_pose_;
+  std::array<double, 3> waypoint_ {0.1, 0.1, 0.1};
+  int leg_{0};
+  double leg_len_{0.5};
+  double spacing_{0.5};
+  int max_legs_{24};
+
+  static constexpr std::array<std::array<int, 2>, 4> kDirs{{{1, 0}, {0, 1}, {-1, 0}, {0, -1}}};   // E, N, W, S
+
 
   double takeoff_altitude_{2.0};
   double kp_xy_{1.0};
@@ -55,6 +65,8 @@ private:
   geometry_msgs::msg::Twist step_takeoff();
   geometry_msgs::msg::Twist step_waypoints();
   geometry_msgs::msg::Twist step_land();
+  geometry_msgs::msg::Twist pickup();
+
   std::array<double, 3> PID_controller(const std::array<double, 3> & target_pose_, const std::array<double, 3> & current_pose_) const;
 
   static std::array<double, 3> world_to_body(const std::array<double, 3> & v_world, double yaw);

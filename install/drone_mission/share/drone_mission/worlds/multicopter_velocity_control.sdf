@@ -101,9 +101,7 @@ You can use the velocity controller and command linear velocity and yaw angular 
     </model>
 
     <include>
-      <uri>
-        https://fuel.gazebosim.org/1.0/OpenRobotics/models/X3 UAV/4
-      </uri>
+      <uri>model://x3</uri>
       <plugin
         filename="gz-sim-multicopter-motor-model-system"
         name="gz::sim::systems::MulticopterMotorModel">
@@ -229,200 +227,57 @@ You can use the velocity controller and command linear velocity and yaw angular 
         <dimensions>3</dimensions>
       </plugin>
     </include>
-    <include>
-      <pose>0 3 1 0 0 0</pose>
-      <uri>
-        https://fuel.gazebosim.org/1.0/OpenRobotics/models/X4 UAV Config 1
-      </uri>
 
-      <plugin filename="gz-sim-multicopter-motor-model-system"
-        name="gz::sim::systems::MulticopterMotorModel">
-        <robotNamespace>X4</robotNamespace>
-        <jointName>rotor_0_joint</jointName>
-        <linkName>rotor_0</linkName>
-        <turningDirection>ccw</turningDirection>
-        <timeConstantUp>0.0182</timeConstantUp>
-        <timeConstantDown>0.0182</timeConstantDown>
-        <maxRotVelocity>1000.0</maxRotVelocity>
-        <motorConstant>1.269e-05</motorConstant>
-        <momentConstant>0.016754</momentConstant>
-        <commandSubTopic>command/motor_speed</commandSubTopic>
-        <actuator_number>0</actuator_number>
-        <rotorDragCoefficient>2.0673e-04</rotorDragCoefficient>
-        <rotorDragCoefficient>0</rotorDragCoefficient>
-        <rollingMomentCoefficient>0</rollingMomentCoefficient>
-        <motorSpeedPubTopic>motor_speed/0</motorSpeedPubTopic>
-        <rotorVelocitySlowdownSim>2</rotorVelocitySlowdownSim>
-        <motorType>velocity</motorType>
-      </plugin>
-      <plugin filename="gz-sim-multicopter-motor-model-system"
-        name="gz::sim::systems::MulticopterMotorModel">
-        <robotNamespace>X4</robotNamespace>
-        <jointName>rotor_1_joint</jointName>
-        <linkName>rotor_1</linkName>
-        <turningDirection>cw</turningDirection>
-        <timeConstantUp>0.0182</timeConstantUp>
-        <timeConstantDown>0.0182</timeConstantDown>
-        <maxRotVelocity>1000.0</maxRotVelocity>
-        <motorConstant>1.269e-05</motorConstant>
-        <momentConstant>0.016754</momentConstant>
-        <commandSubTopic>command/motor_speed</commandSubTopic>
-        <actuator_number>1</actuator_number>
-        <rotorDragCoefficient>2.0673e-04</rotorDragCoefficient>
-        <rotorDragCoefficient>0</rotorDragCoefficient>
-        <rollingMomentCoefficient>0</rollingMomentCoefficient>
-        <motorSpeedPubTopic>motor_speed/1</motorSpeedPubTopic>
-        <rotorVelocitySlowdownSim>2</rotorVelocitySlowdownSim>
-        <motorType>velocity</motorType>
-      </plugin>
-      <plugin filename="gz-sim-multicopter-motor-model-system"
-        name="gz::sim::systems::MulticopterMotorModel">
-        <robotNamespace>X4</robotNamespace>
-        <jointName>rotor_2_joint</jointName>
-        <linkName>rotor_2</linkName>
-        <turningDirection>ccw</turningDirection>
-        <timeConstantUp>0.0182</timeConstantUp>
-        <timeConstantDown>0.0182</timeConstantDown>
-        <maxRotVelocity>1000.0</maxRotVelocity>
-        <motorConstant>1.269e-05</motorConstant>
-        <momentConstant>0.016754</momentConstant>
-        <commandSubTopic>command/motor_speed</commandSubTopic>
-        <actuator_number>2</actuator_number>
-        <rotorDragCoefficient>2.0673e-04</rotorDragCoefficient>
-        <rotorDragCoefficient>0</rotorDragCoefficient>
-        <rollingMomentCoefficient>0</rollingMomentCoefficient>
-        <motorSpeedPubTopic>motor_speed/2</motorSpeedPubTopic>
-        <rotorVelocitySlowdownSim>2</rotorVelocitySlowdownSim>
-        <motorType>velocity</motorType>
-      </plugin>
-      <plugin filename="gz-sim-multicopter-motor-model-system"
-        name="gz::sim::systems::MulticopterMotorModel">
-        <robotNamespace>X4</robotNamespace>
-        <jointName>rotor_3_joint</jointName>
-        <linkName>rotor_3</linkName>
-        <turningDirection>cw</turningDirection>
-        <timeConstantUp>0.0182</timeConstantUp>
-        <timeConstantDown>0.0182</timeConstantDown>
-        <maxRotVelocity>1000.0</maxRotVelocity>
-        <motorConstant>1.269e-05</motorConstant>
-        <momentConstant>0.016754</momentConstant>
-        <commandSubTopic>command/motor_speed</commandSubTopic>
-        <actuator_number>3</actuator_number>
-        <rotorDragCoefficient>2.0673e-04</rotorDragCoefficient>
-        <rotorDragCoefficient>0</rotorDragCoefficient>
-        <rollingMomentCoefficient>0</rollingMomentCoefficient>
-        <motorSpeedPubTopic>motor_speed/3</motorSpeedPubTopic>
-        <rotorVelocitySlowdownSim>2</rotorVelocitySlowdownSim>
-        <motorType>velocity</motorType>
-      </plugin>
-      <plugin filename="gz-sim-multicopter-motor-model-system"
-        name="gz::sim::systems::MulticopterMotorModel">
-        <robotNamespace>X4</robotNamespace>
-        <jointName>rotor_4_joint</jointName>
-        <linkName>rotor_4</linkName>
-        <turningDirection>ccw</turningDirection>
-        <timeConstantUp>0.0182</timeConstantUp>
-        <timeConstantDown>0.0182</timeConstantDown>
-        <maxRotVelocity>1000.0</maxRotVelocity>
-        <motorConstant>1.269e-05</motorConstant>
-        <momentConstant>0.016754</momentConstant>
-        <commandSubTopic>command/motor_speed</commandSubTopic>
-        <actuator_number>4</actuator_number>
-        <rotorDragCoefficient>2.0673e-04</rotorDragCoefficient>
-        <rotorDragCoefficient>0</rotorDragCoefficient>
-        <rollingMomentCoefficient>0</rollingMomentCoefficient>
-        <motorSpeedPubTopic>motor_speed/4</motorSpeedPubTopic>
-        <rotorVelocitySlowdownSim>2</rotorVelocitySlowdownSim>
-        <motorType>velocity</motorType>
-      </plugin>
-      <plugin filename="gz-sim-multicopter-motor-model-system"
-        name="gz::sim::systems::MulticopterMotorModel">
-        <robotNamespace>X4</robotNamespace>
-        <jointName>rotor_5_joint</jointName>
-        <linkName>rotor_5</linkName>
-        <turningDirection>cw</turningDirection>
-        <timeConstantUp>0.0182</timeConstantUp>
-        <timeConstantDown>0.0182</timeConstantDown>
-        <maxRotVelocity>1000.0</maxRotVelocity>
-        <motorConstant>1.269e-05</motorConstant>
-        <momentConstant>0.016754</momentConstant>
-        <commandSubTopic>command/motor_speed</commandSubTopic>
-        <actuator_number>5</actuator_number>
-        <rotorDragCoefficient>2.0673e-04</rotorDragCoefficient>
-        <rotorDragCoefficient>0</rotorDragCoefficient>
-        <rollingMomentCoefficient>0</rollingMomentCoefficient>
-        <motorSpeedPubTopic>motor_speed/5</motorSpeedPubTopic>
-        <rotorVelocitySlowdownSim>2</rotorVelocitySlowdownSim>
-        <motorType>velocity</motorType>
-      </plugin>
 
-      <plugin
-        filename="gz-sim-multicopter-control-system"
-        name="gz::sim::systems::MulticopterVelocityControl">
-        <robotNamespace>X4</robotNamespace>
-        <commandSubTopic>gazebo/command/twist</commandSubTopic>
-        <enableSubTopic>enable</enableSubTopic>
-        <comLinkName>base_link</comLinkName>
-        <velocityGain>6 6 10</velocityGain>
-        <attitudeGain>4 4 2</attitudeGain>
-        <angularRateGain>0.7 0.7 0.7</angularRateGain>
-        <maximumLinearAcceleration>1 1 2</maximumLinearAcceleration>
-        <maximumLinearVelocity>5 5 5</maximumLinearVelocity>
-        <maximumAngularVelocity>3 3 3</maximumAngularVelocity>
-        <linearVelocityNoiseMean>0 0 0</linearVelocityNoiseMean>
-        <!-- linearVelocityNoiseStdDev based on error values reported in the paper Shen et. al., -->
-        <!-- Vision-Based State Estimation and Trajectory Control Towards High-Speed Flight with a Quadrotor -->
-        <!-- http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.490.7958&rep=rep1&type=pdf -->
-        <linearVelocityNoiseStdDev>0.1105 0.1261 0.0947</linearVelocityNoiseStdDev>
-        <angularVelocityNoiseMean>0 0 0</angularVelocityNoiseMean>
-        <!-- angularVelocityNoiseStdDev values based on ADIS16448's Rate Noise Density with a sample  -->
-        <!-- time of 0.004 ms. -->
-        <angularVelocityNoiseStdDev>0.004 0.004 0.004</angularVelocityNoiseStdDev>
+    <!-- Can: standing, red, label 1 -->
+    <model name="trash_can_1">
+      <pose>1.5 0.5 0.06 0 0 0</pose>            <!-- z = height/2 so it rests on the ground -->
+      <link name="link">
+        <inertial>
+          <mass>0.015</mass>
+          <inertia>                              <!-- solid cylinder: Ixx = m(3r²+h²)/12, Izz = mr²/2 -->
+            <ixx>2.2e-5</ixx><iyy>2.2e-5</iyy><izz>8.2e-6</izz>
+            <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry><cylinder><radius>0.033</radius><length>0.12</length></cylinder></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>0.033</radius><length>0.12</length></cylinder></geometry>
+          <material><ambient>0.8 0.1 0.1 1</ambient><diffuse>0.8 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+      <plugin filename="gz-sim-label-system" name="gz::sim::systems::Label">
+        <label>1</label>
+      </plugin>
+    </model>
 
-        <rotorConfiguration>
-          <rotor>
-            <jointName>rotor_0_joint</jointName>
-            <forceConstant>1.269e-05</forceConstant>
-            <momentConstant>1.6754e-2</momentConstant>
-            <direction>1</direction>
-          </rotor>
-          <rotor>
-            <jointName>rotor_1_joint</jointName>
-            <forceConstant>1.269e-05</forceConstant>
-            <momentConstant>1.6754e-2</momentConstant>
-            <direction>-1</direction>
-          </rotor>
-          <rotor>
-            <jointName>rotor_2_joint</jointName>
-            <forceConstant>1.269e-05</forceConstant>
-            <momentConstant>1.6754e-2</momentConstant>
-            <direction>1</direction>
-          </rotor>
-          <rotor>
-            <jointName>rotor_3_joint</jointName>
-            <forceConstant>1.269e-05</forceConstant>
-            <momentConstant>1.6754e-2</momentConstant>
-            <direction>-1</direction>
-          </rotor>
-          <rotor>
-            <jointName>rotor_4_joint</jointName>
-            <forceConstant>1.269e-05</forceConstant>
-            <momentConstant>1.6754e-2</momentConstant>
-            <direction>1</direction>
-          </rotor>
-          <rotor>
-            <jointName>rotor_5_joint</jointName>
-            <forceConstant>1.269e-05</forceConstant>
-            <momentConstant>1.6754e-2</momentConstant>
-            <direction>-1</direction>
-          </rotor>
-        </rotorConfiguration>
+
+    <!-- Bottle: lying on its side, translucent blue, label 2 -->
+    <model name="trash_bottle_1">
+      <pose>2.0 -0.5 0.035 1.5708 0 0.6</pose>   <!-- roll 90°: lying; z = radius -->
+      <link name="link">
+        <inertial>
+          <mass>0.03</mass>
+          <inertia>
+            <ixx>1.1e-4</ixx><iyy>1.1e-4</iyy><izz>1.8e-5</izz>
+            <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry><cylinder><radius>0.035</radius><length>0.2</length></cylinder></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>0.035</radius><length>0.2</length></cylinder></geometry>
+          <material><ambient>0.3 0.6 0.9 0.8</ambient><diffuse>0.3 0.6 0.9 0.8</diffuse></material>
+        </visual>
+      </link>
+      <plugin filename="gz-sim-label-system" name="gz::sim::systems::Label">
+        <label>2</label>
       </plugin>
-      <plugin
-        filename="gz-sim-odometry-publisher-system"
-        name="gz::sim::systems::OdometryPublisher">
-        <dimensions>3</dimensions>
-      </plugin>
-    </include>
+    </model>
+
+
   </world>
 </sdf>

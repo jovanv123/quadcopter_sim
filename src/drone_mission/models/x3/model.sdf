@@ -315,6 +315,7 @@
                     </box>
                 </geometry>
             </visual>
+            
             <sensor name="rs_d435" type="rgbd_camera">
                 <always_on>true</always_on>
                 <update_rate>30</update_rate>
@@ -344,7 +345,26 @@
                     </noise>
                 </camera>
             </sensor>
+
+            <sensor name="seg_camera" type="segmentation">
+                <always_on>true</always_on>
+                <update_rate>30</update_rate>
+                <topic>segmentation</topic>
+                <camera>
+                    <segmentation_type>semantic</segmentation_type>   <!-- or: instance -->
+                    <horizontal_fov>1.204</horizontal_fov>            <!-- same as rs_d435 -->
+                    <image>
+                        <width>640</width>
+                        <height>480</height>
+                    </image>
+                    <clip>
+                        <near>0.1</near>
+                        <far>10</far>
+                    </clip>
+                </camera>
+            </sensor>
         </link>
+
         <joint name="camera_joint" type="fixed">
             <parent>X3/base_link</parent>
             <child>camera_link</child>

@@ -10,8 +10,7 @@ MissionNode::MissionNode(const rclcpp::NodeOptions & options)
 {
   // Parameters let mission values be changed from YAML without rebuilding the package.
   takeoff_altitude_ = declare_parameter<double>("takeoff_altitude", takeoff_altitude_);
-  const auto waypoint_values = declare_parameter<std::vector<double>>(
-    "waypoints", std::vector<double>{});
+
   kp_xy_ = declare_parameter<double>("kp_xy", kp_xy_);
   kp_z_ = declare_parameter<double>("kp_z", kp_z_);
   kp_yaw_ = declare_parameter<double>("kp_yaw", kp_yaw_);
@@ -20,13 +19,6 @@ MissionNode::MissionNode(const rclcpp::NodeOptions & options)
   position_tolerance_ = declare_parameter<double>("position_tolerance", position_tolerance_);
   control_rate_hz_ = declare_parameter<double>("control_rate_hz", control_rate_hz_);
 
-  if (waypoint_values.size() % 3 != 0) {
-    throw std::invalid_argument("The waypoints parameter must contain x, y, z triples");
-  }
-  waypoints_.reserve(waypoint_values.size() / 3);
-  for (std::size_t i = 0; i < waypoint_values.size(); i += 3) {
-    waypoints_.push_back({waypoint_values[i], waypoint_values[i + 1], waypoint_values[i + 2]});
-  }
 
   // ROS topic names match the corresponding entries in config/bridge.yaml.
   twist_publisher_ = create_publisher<geometry_msgs::msg::Twist>(
@@ -39,6 +31,17 @@ MissionNode::MissionNode(const rclcpp::NodeOptions & options)
       has_odometry_ = true;
     });
 
+  detections_subscriber_ = create_subscription<geometry_msgs::msg::PointStamped>(
+    "/detections/closest_world", rclcpp::QoS(10),
+    [this](const geometry_msgs::msg::PointStamped::SharedPtr message) {
+      if(!has_point_){
+        latest_point_ = *message;
+        has_point_ = true;
+      }
+    }
+  );
+  
+  // detections_subscriber = create_subscription<>("")
   if (control_rate_hz_ <= 0.0) {
     throw std::invalid_argument("control_rate_hz must be greater than zero");
   }
@@ -59,7 +62,8 @@ void MissionNode::control_loop()
     case State::Idle: if(has_odometry_){starting_pose_ = get_pose(); state_ = State::Takeoff;} break;
     case State::Takeoff: twist_publisher_->publish(step_takeoff()); break;
     case State::Waypoints: twist_publisher_->publish(step_waypoints()); break;
-    case State::Land: starting_pose_ = get_pose(); twist_publisher_->publish(step_land()); break;
+    case State::Pickup: if(has_point_){twist_publisher_->publish(pickup());} break;
+    case State::Land: twist_publisher_->publish(step_land()); break;
     case State::Done: twist_publisher_->publish(geometry_msgs::msg::Twist {}); break;
 
   }
@@ -82,11 +86,28 @@ geometry_msgs::msg::Twist MissionNode::step_takeoff()
   return speed_msg_;
 }
 
+geometry_msgs::msg::Twist MissionNode::pickup()
+{
+  const auto & current_pose_msg_ = get_pose();
+  const std::array<double, 3> current_pose_ {current_pose_msg_.position.x, current_pose_msg_.position.y, current_pose_msg_.position.z};
+  const std::array<double, 3> target_point_ {latest_point_.point.x, latest_point_.point.y, latest_point_.point.z};
+
+  const auto target_speed = PID_controller(target_point_, current_pose_);
+
+  geometry_msgs::msg::Twist speed_msg_;
+  speed_msg_.linear.x = target_speed[0];
+  speed_msg_.linear.y = target_speed[1];
+  speed_msg_.linear.z = target_speed[2];
+
+  if (reached(target_point_)) { starting_pose_ = get_pose(); state_ = State::Land; }
+  return speed_msg_;
+}
+
 geometry_msgs::msg::Twist MissionNode::step_waypoints()
 {
   const auto & current_pose_msg_ = get_pose();
   const std::array<double, 3> current_pose_ {current_pose_msg_.position.x, current_pose_msg_.position.y, current_pose_msg_.position.z};
-  const std::array<double, 3> target_pose_ {waypoints_[current_waypoint_index_][0], waypoints_[current_waypoint_index_][1], waypoints_[current_waypoint_index_][2]};
+  const std::array<double, 3> target_pose_ {waypoint_[0], waypoint_[1], takeoff_altitude_};
 
   const auto target_speed_ = PID_controller(target_pose_, current_pose_);
   
@@ -95,14 +116,20 @@ geometry_msgs::msg::Twist MissionNode::step_waypoints()
   speed_msg_.linear.y = target_speed_[1];
   speed_msg_.linear.z = target_speed_[2];
 
-  if (reached(target_pose_)){
-    current_waypoint_index_++;
-    if (current_waypoint_index_ >= waypoints_.size())
-    {
-      current_waypoint_index_ = 0;
-      state_ = State::Land;
+  if (reached(target_pose_) || has_point_){
+
+    if (leg_ >= max_legs_ || has_point_) {                      
+      leg_ = 0;
+      leg_len_ = 1.0;
+      state_ = State::Pickup;
       return geometry_msgs::msg::Twist{};
     }
+    const auto & d = kDirs[leg_ % 4];              // direction of the next leg
+    waypoint_[0] += d[0] * leg_len_ * spacing_;
+    waypoint_[1] += d[1] * leg_len_ * spacing_;
+    if (leg_ % 2 == 1) { leg_len_ += 0.5; }             // grow after every second leg
+    ++leg_;
+
   }
 
   return speed_msg_;
