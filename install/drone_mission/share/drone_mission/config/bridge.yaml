@@ -63,3 +63,45 @@
   ros_type_name: "rosgraph_msgs/msg/Clock"
   gz_type_name: "gz.msgs.Clock"
   direction: GZ_TO_ROS
+
+- ros_topic_name: "/x3/gripper/left_cmd"
+  gz_topic_name: "/x3/gripper/left_cmd"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/x3/gripper/right_cmd"
+  gz_topic_name: "/x3/gripper/right_cmd"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/x3/gripper/attach/trash_can_1"
+  gz_topic_name: "/x3/gripper/attach/trash_can_1"
+  ros_type_name: "std_msgs/msg/Empty"
+  gz_type_name: "gz.msgs.Empty"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/x3/gripper/detach/trash_can_1"
+  gz_topic_name: "/x3/gripper/detach/trash_can_1"
+  ros_type_name: "std_msgs/msg/Empty"
+  gz_type_name: "gz.msgs.Empty"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/x3/gripper/attach/trash_bottle_1"
+  gz_topic_name: "/x3/gripper/attach/trash_bottle_1"
+  ros_type_name: "std_msgs/msg/Empty"
+  gz_type_name: "gz.msgs.Empty"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/x3/gripper/detach/trash_bottle_1"
+  gz_topic_name: "/x3/gripper/detach/trash_bottle_1"
+  ros_type_name: "std_msgs/msg/Empty"
+  gz_type_name: "gz.msgs.Empty"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/x3/gripper/contact"
+  gz_topic_name: "/x3/gripper/contact"
+  ros_type_name: "ros_gz_interfaces/msg/Contacts"
+  gz_type_name: "gz.msgs.Contacts"
+  direction: GZ_TO_ROS

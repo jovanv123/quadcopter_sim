@@ -303,7 +303,7 @@ ZeroMQ_DIR:PATH=ZeroMQ_DIR-NOTFOUND
 ZeroMQ_LIBRARY_zmq:FILEPATH=/usr/lib/x86_64-linux-gnu/libzmq.so
 
 //Path to a library.
-_lib:FILEPATH=/opt/ros/jazzy/lib/libvision_msgs__rosidl_typesupport_fastrtps_cpp.so
+_lib:FILEPATH=/home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/lib/libdrone_interfaces__rosidl_typesupport_fastrtps_cpp.so
 
 //The directory containing a CMake configuration file for action_msgs.
 action_msgs_DIR:PATH=/opt/ros/jazzy/share/action_msgs/cmake
@@ -373,6 +373,9 @@ composition_interfaces_DIR:PATH=/opt/ros/jazzy/share/composition_interfaces/cmak
 
 //The directory containing a CMake configuration file for console_bridge.
 console_bridge_DIR:PATH=/usr/lib/x86_64-linux-gnu/console_bridge/cmake
+
+//The directory containing a CMake configuration file for drone_interfaces.
+drone_interfaces_DIR:PATH=/home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/share/drone_interfaces/cmake
 
 //Value Computed by CMake
 drone_mission_BINARY_DIR:STATIC=/home/sicvarius/Documents/gazebo_quadcopter/build/drone_mission

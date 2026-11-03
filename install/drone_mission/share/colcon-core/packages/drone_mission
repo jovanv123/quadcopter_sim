@@ -1,1 +1,1 @@
-drone_perception:eigen:geometry_msgs:nav_msgs:rclcpp:ros_gz_bridge:ros_gz_sim:sensor_msgs:std_msgs:tf2:tf2_geometry_msgs:tf2_ros
+drone_interfaces:drone_perception:eigen:geometry_msgs:nav_msgs:rclcpp:ros_gz_bridge:ros_gz_sim:sensor_msgs:std_msgs:tf2:tf2_geometry_msgs:tf2_ros

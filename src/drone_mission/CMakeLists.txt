@@ -19,7 +19,7 @@ find_package(tf2_geometry_msgs REQUIRED)
 find_package(ros_gz_sim REQUIRED)
 find_package(ros_gz_bridge REQUIRED)
 find_package(Eigen3 REQUIRED)
-
+find_package(drone_interfaces REQUIRED)
 # ---------------- mission_node ----------------
 add_executable(mission_node
   src/main.cpp
@@ -35,6 +35,7 @@ ament_target_dependencies(mission_node
   std_msgs
   tf2
   tf2_geometry_msgs
+  drone_interfaces
 )
 target_link_libraries(mission_node Eigen3::Eigen)
 
@@ -53,6 +54,7 @@ ament_target_dependencies(tracker_node
   tf2
   tf2_ros
   tf2_geometry_msgs
+  drone_interfaces
 )
 target_link_libraries(tracker_node Eigen3::Eigen)
 

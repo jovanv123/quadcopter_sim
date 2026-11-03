@@ -3,6 +3,12 @@
 
 CMakeFiles/mission_node.dir/src/main.cpp.o
  /home/sicvarius/Documents/gazebo_quadcopter/src/drone_mission/src/main.cpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/detail/detection__builder.hpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/detail/detection__struct.hpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/detail/detection__traits.hpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/detail/detection__type_support.hpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/detection.hpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
  /home/sicvarius/Documents/gazebo_quadcopter/src/drone_mission/include/drone_mission/mission_node.hpp
  /opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__builder.hpp
  /opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__struct.hpp
@@ -499,8 +505,18 @@ CMakeFiles/mission_node.dir/src/main.cpp.o
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/bool__struct.hpp
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/bool__traits.hpp
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/bool__type_support.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/empty__builder.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/empty__struct.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/empty__traits.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/empty__type_support.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float64__builder.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float64__struct.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float64__traits.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float64__type_support.hpp
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/header__struct.hpp
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/header__traits.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/empty.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/float64.hpp
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
  /opt/ros/jazzy/include/tf2/tf2/LinearMath/Matrix3x3.h
  /opt/ros/jazzy/include/tf2/tf2/LinearMath/Matrix3x3.hpp
@@ -1107,6 +1123,12 @@ CMakeFiles/mission_node.dir/src/main.cpp.o
 
 CMakeFiles/mission_node.dir/src/mission_node.cpp.o
  /home/sicvarius/Documents/gazebo_quadcopter/src/drone_mission/src/mission_node.cpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/detail/detection__builder.hpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/detail/detection__struct.hpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/detail/detection__traits.hpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/detail/detection__type_support.hpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/detection.hpp
+ /home/sicvarius/Documents/gazebo_quadcopter/install/drone_interfaces/include/drone_interfaces/drone_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
  /home/sicvarius/Documents/gazebo_quadcopter/src/drone_mission/include/drone_mission/mission_node.hpp
  /opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__builder.hpp
  /opt/ros/jazzy/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__struct.hpp
@@ -1603,8 +1625,18 @@ CMakeFiles/mission_node.dir/src/mission_node.cpp.o
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/bool__struct.hpp
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/bool__traits.hpp
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/bool__type_support.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/empty__builder.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/empty__struct.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/empty__traits.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/empty__type_support.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float64__builder.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float64__struct.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float64__traits.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/float64__type_support.hpp
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/header__struct.hpp
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/detail/header__traits.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/empty.hpp
+ /opt/ros/jazzy/include/std_msgs/std_msgs/msg/float64.hpp
  /opt/ros/jazzy/include/std_msgs/std_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
  /opt/ros/jazzy/include/tf2/tf2/LinearMath/Matrix3x3.h
  /opt/ros/jazzy/include/tf2/tf2/LinearMath/Matrix3x3.hpp

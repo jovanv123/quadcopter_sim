@@ -71,7 +71,7 @@ def generate_launch_description():
     base_to_camera = Node(
         package='tf2_ros', executable='static_transform_publisher',
         arguments=['--x', '0.1', '--y', '0', '--z', '-0.04',
-                '--roll', '0', '--pitch', '1.5708', '--yaw', '0',
+                '--roll', '0', '--pitch', '0.9', '--yaw', '0',
                 '--frame-id', 'x3/base_footprint', '--child-frame-id', 'camera_link'],
         parameters=[{'use_sim_time': True}],
     )

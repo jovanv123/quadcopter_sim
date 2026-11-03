@@ -6,7 +6,8 @@ from cv_bridge import CvBridge
 import message_filters
 import numpy as np
 import cv2
-from geometry_msgs.msg import PointStamped
+from geometry_msgs.msg import Point
+from drone_interfaces.msg import Detection
 
 class PerceptionNode (Node):
     def __init__(self):
@@ -19,7 +20,7 @@ class PerceptionNode (Node):
         self.sync.registerCallback(self.on_image)
         
         self.pub = self.create_publisher(Image, '/detections/image', 10)
-        self.closest_detection_pub = self.create_publisher(PointStamped, '/detections/closest', 10)
+        self.closest_detection_pub = self.create_publisher(Detection, '/detections/closest', 10)
 
         
     def on_image(self, seg_msg: Image, depth_msg: Image):
@@ -58,13 +59,12 @@ class PerceptionNode (Node):
         detections_sorted = sorted(detections, key=lambda x: x[2])
 
         if detections_sorted:
-            closest_detection = detections_sorted[0]
-            point = PointStamped().point.__class__(x=float(closest_detection[1][0]), y=float(closest_detection[1][1]), z=float(closest_detection[2])) 
-            ####NOTE : point is a set of ([]px, []px, z meters)####
-            self.closest_detection_pub.publish(PointStamped(
-                header=seg_msg.header,
-                point=point
-            ))
+            label, (u, v), z = detections_sorted[0]
+            msg = Detection()
+            msg.header = depth_msg.header          # was seg_msg.header → caused the TF frame error
+            msg.label = label
+            msg.position = Point(x=float(u), y=float(v), z=float(z))   # still (u px, v px, z m)
+            self.closest_detection_pub.publish(msg)
 
 
 def main(args=None):

@@ -59,6 +59,11 @@ You can use the velocity controller and command linear velocity and yaw angular 
       <render_engine>ogre2</render_engine>
     </plugin>
 
+    <plugin
+      filename="gz-sim-contact-system"
+      name="gz::sim::systems::Contact">
+    </plugin>
+
     <light type="directional" name="sun">
       <cast_shadows>true</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
@@ -225,6 +230,46 @@ You can use the velocity controller and command linear velocity and yaw angular 
         filename="gz-sim-odometry-publisher-system"
         name="gz::sim::systems::OdometryPublisher">
         <dimensions>3</dimensions>
+      </plugin>
+
+      <plugin
+        filename="gz-sim-joint-position-controller-system"
+        name="gz::sim::systems::JointPositionController">
+        <joint_name>gripper_left_joint</joint_name>
+        <topic>/x3/gripper/left_cmd</topic>
+        <p_gain>50</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>1</d_gain>
+      </plugin>
+      <plugin
+        filename="gz-sim-joint-position-controller-system"
+        name="gz::sim::systems::JointPositionController">
+        <joint_name>gripper_right_joint</joint_name>
+        <topic>/x3/gripper/right_cmd</topic>
+        <p_gain>50</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>1</d_gain>
+      </plugin>
+
+      <plugin
+        filename="gz-sim-detachable-joint-system"
+        name="gz::sim::systems::DetachableJoint">
+        <parent_link>gripper_base</parent_link>
+        <child_model>trash_can_1</child_model>
+        <child_link>link</child_link>
+        <attach_topic>/x3/gripper/attach/trash_can_1</attach_topic>
+        <detach_topic>/x3/gripper/detach/trash_can_1</detach_topic>
+        <output_topic>/x3/gripper/state/trash_can_1</output_topic>
+      </plugin>
+      <plugin
+        filename="gz-sim-detachable-joint-system"
+        name="gz::sim::systems::DetachableJoint">
+        <parent_link>gripper_base</parent_link>
+        <child_model>trash_bottle_1</child_model>
+        <child_link>link</child_link>
+        <attach_topic>/x3/gripper/attach/trash_bottle_1</attach_topic>
+        <detach_topic>/x3/gripper/detach/trash_bottle_1</detach_topic>
+        <output_topic>/x3/gripper/state/trash_bottle_1</output_topic>
       </plugin>
     </include>
 
